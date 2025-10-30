@@ -23,8 +23,8 @@ It visualizes how **education moderates the relationship between economic growth
 ---
 
 ## 🚀 How to View the Dashboard
-1. Open the **live site** (GitHub Pages or Netlify):  
-   👉 [https://yourusername.github.io/asa-interactive-dashboard/](https://yourusername.github.io/asa-interactive-dashboard/)
+1. Open the **live site** ):  
+   👉 https://asa-interactive-dashboard.vercel.app/#
 2. Click any section on the navigation bar to switch between visualizations.
 3. All plots are **interactive** — you can zoom, hover, and export data directly.
 

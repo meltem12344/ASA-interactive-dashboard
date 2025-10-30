@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DATAMINDS | Interactive Analytics Dashboard</title>
+
+  <style>
+    :root {
+      --primary: #0e2238;
+      --accent: #0078d4;
+      --bg: #f6f8fa;
+      --text: #1a1a1a;
+      --muted: #64748b;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: "Inter", "Segoe UI", Arial, sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      overflow: hidden;
+    }
+
+    header {
+      background-color: var(--primary);
+      color: white;
+      height: 58px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 40px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    }
+
+    header h1 {
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: 0.3px;
+      margin: 0;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+
+    nav a {
+      color: #cdd7e0;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      transition: color 0.25s ease, border-bottom 0.25s ease;
+      padding: 6px 4px;
+      border-bottom: 2px solid transparent;
+    }
+
+    nav a:hover, nav a.active {
+      color: #ffffff;
+      border-bottom: 2px solid var(--accent);
+    }
+
+    #brief {
+      text-align: center;
+      background: white;
+      font-size: 15px;
+      color: var(--text);
+      padding: 12px 25px;
+      border-bottom: 1px solid #e3e3e3;
+      line-height: 1.5;
+      height: 65px;
+      box-sizing: border-box;
+    }
+
+    #viewer {
+      width: 100%;
+      height: calc(100% - 123px);
+      border: none;
+      background: #ffffff;
+    }
+
+    footer {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      text-align: center;
+      font-size: 12px;
+      color: var(--muted);
+      padding: 6px 0;
+      background: #fff;
+      border-top: 1px solid #e3e3e3;
+    }
+
+    @media (max-width: 900px) {
+      nav {
+        gap: 10px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      header {
+        flex-direction: column;
+        align-items: center;
+        height: auto;
+        padding: 10px 20px;
+      }
+      #viewer {
+        height: calc(100% - 160px);
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>DATAMINDS | Interactive Analytics Dashboard</h1>
+    <nav>
+      <a href="#" onclick="loadChart('interactive_world_map_co2.html','CO₂ intensity levels across countries (2020–2023). Darker colors indicate higher carbon emissions per GDP unit.')" class="active">CO₂ Intensity</a>
+      <a href="#" onclick="loadChart('interactive_correlation_heatmaps.html','Correlation structure between GDP, Education, Industry, and CO₂ intensity — analyzed by income group.')">Correlation</a>
+      <a href="#" onclick="loadChart('animated_gdp_co2_evolution.html','Dynamic relationship between GDP growth and CO₂ intensity from 2000–2023, visualized over time.')" >GDP–CO₂ Trend</a>
+      <a href="#" onclick="loadChart('animated_education_map.html','Education enrollment rates over time — highlighting global progress in tertiary education.')">Education</a>
+      <a href="#" onclick="loadChart('3d_gdp_education_co2.html','3D visualization showing how GDP and education jointly influence CO₂ intensity across regions.')">3D Model</a>
+      <a href="#" onclick="loadChart('sankey_income_region_emission_flow.html','Sankey diagram visualizing emission flow from income groups to regions, capturing distribution patterns.')" >Flow</a>
+      <a href="#" onclick="loadChart('sunburst_regional_hierarchy.html','Hierarchical sunburst chart summarizing emission intensity by region and income classification.')" >Hierarchy</a>
+    </nav>
+  </header>
+
+  <div id="brief">
+    CO₂ intensity levels across countries (2020–2023). Darker colors indicate higher carbon emissions per GDP unit.
+  </div>
+
+  <iframe id="viewer" src="charts/interactive_world_map_co2.html"></iframe>
+
+  <footer>
+    © 2025 DATAMINDS | World Bank WDI (2000–2023)
+  </footer>
+
+  <script>
+    function loadChart(file, briefText) {
+      const viewer = document.getElementById('viewer');
+      const brief = document.getElementById('brief');
+      viewer.src = "charts/" + file;
+      brief.innerText = briefText;
+
+      // aktif menü güncelleme
+      document.querySelectorAll("nav a").forEach(a => a.classList.remove("active"));
+      event.target.classList.add("active");
+    }
+  </script>
+
+</body>
+</html>
